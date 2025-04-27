@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Linkedin, Facebook, Instagram, Youtube, X } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -18,7 +19,7 @@ const Hero = () => {
             Principal, Director of Academics, and expert in Artificial Intelligence, 
             Machine Learning, and Data Science with a passion for innovation and education.
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-4 mb-8">
             <a 
               href="#about" 
               className="px-8 py-3 bg-navy-800 text-white rounded hover:bg-navy-700 transition-all"
@@ -30,6 +31,25 @@ const Hero = () => {
               className="px-8 py-3 border border-navy-800 text-navy-800 rounded hover:bg-navy-50 transition-all"
             >
               Get in Touch
+            </a>
+          </div>
+
+          {/* Social Media Icons */}
+          <div className="flex gap-6 items-center">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-navy-600 hover:text-navy-800 transition-colors">
+              <Linkedin size={24} />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-navy-600 hover:text-navy-800 transition-colors">
+              <Facebook size={24} />
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-navy-600 hover:text-navy-800 transition-colors">
+              <X size={24} />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-navy-600 hover:text-navy-800 transition-colors">
+              <Instagram size={24} />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-navy-600 hover:text-navy-800 transition-colors">
+              <Youtube size={24} />
             </a>
           </div>
         </div>

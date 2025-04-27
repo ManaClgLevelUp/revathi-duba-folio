@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -18,16 +17,23 @@ const Navigation = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      // For the navigation background
       if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
 
-      // For the back to top button
       if (window.scrollY > 500) {
         setShowBackToTop(true);
       } else {
@@ -55,11 +61,14 @@ const Navigation = () => {
         )}
       >
         <div className="luxury-container flex justify-between items-center">
-          <a href="#home" className="font-playfair text-lg md:text-xl font-medium tracking-tight hover:text-gold-600 transition-colors">
+          <a 
+            href="#home" 
+            className="font-playfair text-lg md:text-xl font-medium tracking-tight hover:text-gold-600 transition-colors"
+            onClick={(e) => scrollToSection(e, '#home')}
+          >
             Dr. Revathi Duba
           </a>
 
-          {/* Mobile menu button */}
           <button
             className="md:hidden flex items-center text-navy-900"
             onClick={() => setIsOpen(!isOpen)}
@@ -68,12 +77,12 @@ const Navigation = () => {
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Desktop navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigationItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
+                onClick={(e) => scrollToSection(e, item.href)}
                 className="text-sm font-inter text-navy-800 hover-underline transition-colors hover:text-navy-600"
               >
                 {item.name}
@@ -82,7 +91,6 @@ const Navigation = () => {
           </nav>
         </div>
 
-        {/* Mobile navigation overlay */}
         {isOpen && (
           <div className="md:hidden fixed inset-0 z-50 bg-background pt-20 px-4">
             <nav className="flex flex-col space-y-6 items-center">
@@ -90,8 +98,8 @@ const Navigation = () => {
                 <a
                   key={item.name}
                   href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
                   className="text-lg font-inter text-navy-800 py-2"
-                  onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </a>
@@ -101,7 +109,6 @@ const Navigation = () => {
         )}
       </header>
 
-      {/* Back to top button */}
       <button
         onClick={scrollToTop}
         className={cn(
